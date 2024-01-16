@@ -1,0 +1,43 @@
+{
+    "name": "Offline Painting Guide",
+    "description": "Creates a PDF showing which colors are needed and saves the reference files for offline usage",
+    "version": "<version>",
+    "manifest_version": 3,
+    "icons": {
+        "16": "./images/icon-16x16.png",
+        "32": "./images/icon-32x32.png"
+    },
+    "background": {
+        "service_worker": "./source/background/background.js"
+    },
+    "action": {
+        "default_popup": "./source/popup/popup.html",
+        "default_icons": {
+            "16": "./images/icon-16x16.png",
+            "32": "./images/icon-32x32.png"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "downloads",
+        "declarativeNetRequest"
+    ],
+    "host_permissions": [
+        "*://*.games-workshop.com/*",
+        "*://cdn.citadelcolour.com/*",
+        "*://*/cdn.citadelcolour.com/*"
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "declarative_net_request": {
+        "rule_resources": [
+            {
+                "id": "test_rules",
+                "enabled": true,
+                "path": "rules.json"
+            }
+        ]
+    }
+}
